@@ -1,0 +1,159 @@
+/* 1) Reset defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) Base Page Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000;     /* solid black background */
+  color: #ffd700;            /* gold text for main content */
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  padding: 1.5rem;
+  text-align: center;
+  background-color: #111;   /* slightly lighter black for header */
+  border-bottom: 2px solid #ffd700;
+}
+
+header h1 {
+  font-size: 2rem;
+}
+
+/* Main container */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* 3) Filter Section */
+.filter-section {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #111; 
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+}
+
+.filter-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  color: #ffd700;
+}
+
+input[type="text"],
+select,
+input[type="date"] {
+  padding: 0.4rem;
+  font-size: 1rem;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background-color: #222;
+  color: #ffd700;
+}
+
+.fav-filter {
+  display: flex;
+  align-items: center;
+  margin-top: 1.8rem;
+}
+.fav-filter label {
+  margin-right: 0.5rem;
+}
+
+/* 4) Cards Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+}
+
+/* 5) Card Styles */
+.card {
+  background-color: #111;          /* dark background for card body */
+  border: 1px solid #ffd700;
+  border-radius: 6px;
+  overflow: hidden;                /* so the header bar is flush */
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Card Header Bar */
+.card-header {
+  background-color: #ffd700;       /* gold bar at the top */
+  padding: 0.6rem 1rem;
+  color: #000;                     /* black text for contrast */
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Favorite star icon */
+.fav-toggle {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #000;                    /* black star color by default */
+  transition: color 0.2s ease;
+}
+.fav-toggle.favorited {
+  color: #d9534f;                 /* a red or gold color to indicate favorited */
+}
+
+.card-body {
+  padding: 1rem;
+  color: #ffd700;                /* gold text in body */
+}
+
+/* On hover, add a subtle lift and shadow */
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Typography inside card body */
+.card-body .author {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.card-body .content {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+.card-body .platform,
+.card-body .date {
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+.card-body .link a {
+  color: #ffd700;
+  text-decoration: underline;
+}
+.card-body .link a:hover {
+  color: #fff;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Outreach Repository</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Outreach Repository</h1>
+  </header>
+  
+  <main>
+    <!-- Filter Section -->
+    <section class="filter-section">
+      <div class="filter-inputs">
+
+        <div class="filter-group">
+          <label for="searchInput">Search:</label>
+          <input type="text" id="searchInput" placeholder="Type to search...">
+        </div>
+
+        <div class="filter-group">
+          <label for="searchType">Search By:</label>
+          <select id="searchType">
+            <option value="title">Title</option>
+            <option value="content">Content</option>
+            <option value="both" selected>Both</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="authorFilter">Filter by Author:</label>
+          <select id="authorFilter">
+            <option value="all" selected>All</option>
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+
+        <!-- Date Range Filters -->
+        <div class="filter-group">
+          <label for="startDate">From (Date):</label>
+          <input type="date" id="startDate">
+        </div>
+        <div class="filter-group">
+          <label for="endDate">To (Date):</label>
+          <input type="date" id="endDate">
+        </div>
+
+        <!-- Favorites Only Toggle -->
+        <div class="filter-group fav-filter">
+          <label for="favoriteOnly">Show Favorites</label>
+          <input type="checkbox" id="favoriteOnly" />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Cards Container -->
+    <section id="cardsContainer" class="cards-container">
+      <!-- Cards appended by script.js -->
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
