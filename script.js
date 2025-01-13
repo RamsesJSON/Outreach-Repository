@@ -19,7 +19,7 @@ const items = [
       link: "https://x.com/LordBaalzebul/status/1800977197189980264",
       content: "Anti-Christian freaks, who pose as \"Satanic\", are merely following the antithetical \"position\" of what Christianity claims is the correct position. Unknowingly, many of them follow literally the account of Judaism (which is a slander from the Jews and their slander about \"Ancient Paganism\" and \"what it was\", when it wasn't). ",
       platform: "X",
-      date: "2025-06-12",
+      date: "2024-06-12",
     }
   ];
   
