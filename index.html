@@ -1,68 +1,1448 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Outreach Repository</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Outreach Repository - Gold/Black Design</title>
+    <style>
+        :root {
+            --gold: #FFD700;
+            --gold-light: #FFE55C;
+            --gold-dark: #B29700;
+            --black: #0A0A0A;
+            --black-light: #1A1A1A;
+            --black-lighter: #242424;
+            --text-primary: #FFF;
+            --text-secondary: #CCC;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --shadow-sm: 0 2px 4px rgba(255, 215, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(255, 215, 0, 0.15);
+            --shadow-lg: 0 8px 16px rgba(255, 215, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--black);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* -------------------------------------------------------
+       HEADER
+    ---------------------------------------------------------*/
+        header {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            background: linear-gradient(to bottom, var(--black), var(--black-light));
+            border-bottom: 1px solid var(--gold-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.025em;
+            text-transform: uppercase;
+        }
+
+        /* -------------------------------------------------------
+       MAIN CONTAINER
+    ---------------------------------------------------------*/
+        main {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        /* -------------------------------------------------------
+       ACTION BUTTONS
+    ---------------------------------------------------------*/
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .action-buttons button {
+            padding: 0.75rem 1.5rem;
+            background: var(--black-lighter);
+            color: var(--gold);
+            border: 1px solid var(--gold-dark);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-buttons button:hover {
+            background: var(--black-light);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .action-buttons button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 215, 0, 0.2),
+                    transparent);
+            transition: 0.5s;
+        }
+
+        .action-buttons button:hover::before {
+            left: 100%;
+        }
+
+        /* -------------------------------------------------------
+       FILTER SECTION
+    ---------------------------------------------------------*/
+        .filter-section {
+            background: var(--black-lighter);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            border: 1px solid var(--gold-dark);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .filter-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--black);
+            border: 1px solid var(--gold-dark);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        /* -------------------------------------------------------
+       CHECKBOX STYLING (for selecting items)
+    ---------------------------------------------------------*/
+        input[type="checkbox"] {
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid var(--gold-dark);
+            border-radius: var(--radius-sm);
+            background-color: var(--black);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--black);
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* -------------------------------------------------------
+       CARDS GRID
+    ---------------------------------------------------------*/
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        /* -------------------------------------------------------
+       CARD
+    ---------------------------------------------------------*/
+        .card {
+            background: var(--black-lighter);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gold-dark);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+
+        .card-header {
+            padding: var(--spacing-md);
+            background: linear-gradient(to right,
+                    rgba(255, 215, 0, 0.1),
+                    rgba(255, 215, 0, 0.05));
+            border-bottom: 1px solid var(--gold-dark);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .card-header h2 {
+            color: var(--gold);
+            font-size: 1.25rem;
+            font-weight: 600;
+            flex: 1 1 auto;
+            margin: 0;
+        }
+
+        .card-icons {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .icon-btn {
+            padding: 0.3rem 0.6rem;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--gold-dark);
+            border-radius: var(--radius-sm);
+            color: var(--gold);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .fav-toggle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-left: auto;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .fav-toggle:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .fav-toggle.favorited {
+            color: var(--gold);
+        }
+
+        .card-body {
+            padding: var(--spacing-md);
+        }
+
+        .card-body .author {
+            color: var(--gold-light);
+            font-weight: 500;
+        }
+
+        .card-body .content {
+            color: var(--text-primary);
+            margin: var(--spacing-sm) 0;
+        }
+
+        .card-body .platform,
+        .card-body .date {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Make sure long links can break */
+        .card-body .link a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: normal;
+            /* Let text wrap normally */
+            word-wrap: break-word;
+            /* Old-school property, but still widely used */
+            overflow-wrap: anywhere;
+            /* More modern approach */
+            word-break: break-word;
+            /* Fallback for older browsers */
+            display: inline-block;
+            /* Ensures wrapping can occur properly */
+        }
+
+        .card-body .link a:hover {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+
+        /* -------------------------------------------------------
+       MODALS
+    ---------------------------------------------------------*/
+        .modal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .modal-bg.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--black-lighter);
+            border: 1px solid var(--gold-dark);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 540px;
+            padding: var(--spacing-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .modal h2 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .modal form label {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .modal-actions {
+            margin-top: var(--spacing-md);
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--spacing-sm);
+        }
+
+        .modal-actions button {
+            background: var(--black);
+            color: var(--gold);
+            border: 1px solid var(--gold-dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .modal-actions button:hover {
+            background: var(--black-light);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* -------------------------------------------------------
+       RESPONSIVE
+    ---------------------------------------------------------*/
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .action-buttons button {
+                width: 100%;
+            }
+
+            .filter-section {
+                padding: var(--spacing-md);
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <h1>Outreach Repository</h1>
-  </header>
-  
-  <main>
-    <!-- Filter Section -->
-    <section class="filter-section">
-      <div class="filter-inputs">
+    <header>
+        <h1>Outreach Repository</h1>
+    </header>
 
-        <div class="filter-group">
-          <label for="searchInput">Search:</label>
-          <input type="text" id="searchInput" placeholder="Type to search...">
+    <main>
+        <!-- Action Buttons -->
+        <section class="action-buttons">
+            <button id="loadDefaultsBtn">Load Default Items</button>
+            <button id="addItemBtn">Add New Item</button>
+            <button id="exportBtn">Export Items</button>
+            <button id="importBtn">Import Items</button>
+            <button id="deleteAllBtn">Delete All Items</button>
+            <button id="deleteSelectedBtn">Delete Selected</button>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="filter-inputs">
+                <div class="filter-group">
+                    <label for="searchInput">Search:</label>
+                    <input type="text" id="searchInput" placeholder="Type to search..." autocomplete="off" />
+                </div>
+
+                <div class="filter-group">
+                    <label for="searchType">Search By:</label>
+                    <select id="searchType" autocomplete="off">
+                        <option value="title">Title</option>
+                        <option value="content">Content</option>
+                        <option value="both" selected>Both</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="authorFilter">Filter by Author:</label>
+                    <select id="authorFilter" autocomplete="off">
+                        <option value="all" selected>All</option>
+                        <!-- Dynamically populated -->
+                    </select>
+                </div>
+
+                <!-- Date Range Filters (YYYY-MM-DD) -->
+                <div class="filter-group">
+                    <label for="startDate">From (Date):</label>
+                    <input type="date" id="startDate" autocomplete="off" />
+                </div>
+                <div class="filter-group">
+                    <label for="endDate">To (Date):</label>
+                    <input type="date" id="endDate" autocomplete="off" />
+                </div>
+
+                <!-- Favorites Only Toggle -->
+                <div class="filter-group">
+                    <label for="favoriteOnly">Show Favorites</label>
+                    <input type="checkbox" id="favoriteOnly" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards Container -->
+        <section id="cardsContainer" class="cards-container"></section>
+    </main>
+
+    <!-- Modal for Adding Items -->
+    <div class="modal-bg" id="modalAddItemBg">
+        <div class="modal" id="modalAddItem">
+            <h2>Add New Item</h2>
+            <form id="addItemForm" autocomplete="off">
+                <label>Title:
+                    <input type="text" name="title" required />
+                </label>
+
+                <label>Author:
+                    <input list="authorsList" name="author" required />
+                    <datalist id="authorsList"></datalist>
+                </label>
+
+                <label>Content:
+                    <textarea name="content" rows="2" required></textarea>
+                </label>
+
+                <label>Platform:
+                    <input list="platformsList" name="platform" required />
+                    <datalist id="platformsList"></datalist>
+                </label>
+
+                <!-- Only select date from calendar, no pattern or placeholder -->
+                <label>Date:
+                    <input type="date" name="date" required />
+                </label>
+
+                <label>Link (optional):
+                    <input type="url" name="link" />
+                </label>
+
+                <div class="modal-actions">
+                    <button type="submit">Add</button>
+                    <button type="button" id="cancelAddItem">Cancel</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div class="filter-group">
-          <label for="searchType">Search By:</label>
-          <select id="searchType">
-            <option value="title">Title</option>
-            <option value="content">Content</option>
-            <option value="both" selected>Both</option>
-          </select>
+    <!-- Modal for Editing Items -->
+    <div class="modal-bg" id="modalEditItemBg">
+        <div class="modal" id="modalEditItem">
+            <h2>Edit Item</h2>
+            <form id="editItemForm" autocomplete="off">
+                <input type="hidden" name="editItemId" />
+
+                <label>Title:
+                    <input type="text" name="editTitle" required />
+                </label>
+
+                <label>Author:
+                    <input list="authorsList" name="editAuthor" required />
+                </label>
+
+                <label>Content:
+                    <textarea name="editContent" rows="2" required></textarea>
+                </label>
+
+                <label>Platform:
+                    <input list="platformsList" name="editPlatform" required />
+                </label>
+
+                <!-- Only select date from calendar -->
+                <label>Date:
+                    <input type="date" name="editDate" required />
+                </label>
+
+                <label>Link (optional):
+                    <input type="url" name="editLink" />
+                </label>
+
+                <div class="modal-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" id="cancelEditItem">Cancel</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div class="filter-group">
-          <label for="authorFilter">Filter by Author:</label>
-          <select id="authorFilter">
-            <option value="all" selected>All</option>
-            <!-- Dynamically populated -->
-          </select>
+    <!-- Modal for Importing Items -->
+    <div class="modal-bg" id="modalImportBg">
+        <div class="modal" id="modalImport">
+            <h2>Import Items</h2>
+            <p style="margin-bottom: 0.5rem;">Paste your JSON or base64 data below:</p>
+            <textarea id="importData" rows="5" placeholder="Paste JSON or base64 here..." autocomplete="off"></textarea>
+
+            <label for="importMode">Import Mode:</label>
+            <select id="importMode" autocomplete="off">
+                <option value="merge" selected>Merge</option>
+                <option value="overwrite">Overwrite</option>
+            </select>
+
+            <div class="modal-actions">
+                <button id="importConfirmBtn">Import</button>
+                <button id="importCancelBtn">Cancel</button>
+            </div>
         </div>
+    </div>
 
-        <!-- Date Range Filters -->
-        <div class="filter-group">
-          <label for="startDate">From (Date):</label>
-          <input type="date" id="startDate">
+    <!-- Modal for Exporting Items with Copy Buttons -->
+    <div class="modal-bg" id="modalExportBg">
+        <div class="modal" id="modalExport">
+            <h2>Export Items</h2>
+            <p><strong>Raw JSON:</strong></p>
+            <textarea id="exportJsonTextarea" rows="5" readonly></textarea>
+            <button id="copyJsonBtn">Copy JSON</button>
+
+            <p style="margin-top: 1rem;"><strong>Base64:</strong></p>
+            <textarea id="exportBase64Textarea" rows="5" readonly></textarea>
+            <button id="copyBase64Btn">Copy Base64</button>
+
+            <div class="modal-actions">
+                <button id="exportCloseBtn">Close</button>
+            </div>
         </div>
-        <div class="filter-group">
-          <label for="endDate">To (Date):</label>
-          <input type="date" id="endDate">
-        </div>
+    </div>
 
-        <!-- Favorites Only Toggle -->
-        <div class="filter-group fav-filter">
-          <label for="favoriteOnly">Show Favorites</label>
-          <input type="checkbox" id="favoriteOnly" />
-        </div>
+    <!-- Datalists (authors, platforms) -->
+    <datalist id="platformsList"></datalist>
 
-      </div>
-    </section>
+    <script>
+        /*************************************************
+         * 1) Default Items
+         **************************************************/
+        const DEFAULT_ITEMS = [
+            
+                {
+                    "id": 1,
+                    "title": "10 Things That Keep You Enslaved In Christianity & Islam",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1835189262272106594",
+                    "content": "Criticism of Christianity and Islam, focusing on enslavement through self-deception, manipulation, and more.",
+                    "platform": "X",
+                    "date": "2024-09-15"
+                },
+                {
+                    "id": 2,
+                    "title": "Spiritual Satanism & Enemy 'Religions': Here Answers Will Always Arrive",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1832542717185818753",
+                    "content": "Discussion on Spiritual Satanism providing answers against enemy religions.",
+                    "platform": "X",
+                    "date": "2024-09-14"
+                },
+                {
+                    "id": 3,
+                    "title": "The Historical Truth About 'Animal Sacrifices'",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1799273113923850461",
+                    "content": "Explores the historical context of animal sacrifices.",
+                    "platform": "X",
+                    "date": "2024-05-15"
+                },
+                {
+                    "id": 4,
+                    "title": "Christian Masculinity - Retaking Yerushalaim - Psychology of Christian Macho Men",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1814103168847942049",
+                    "content": "Analysis of Christian masculinity and its psychological aspects.",
+                    "platform": "X",
+                    "date": "2024-07-25"
+                },
+                {
+                    "id": 5,
+                    "title": "11 Lies Of 'Anti-Semite Christians' Completely Debunked",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1811613244722692542",
+                    "content": "Debunking supposed lies of anti-Semitic Christians.",
+                    "platform": "X",
+                    "date": "2024-07-15"
+                },
+                {
+                    "id": 6,
+                    "title": "A Message From a Jew: About Christianity",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1797058786525380696",
+                    "content": "A Jewish perspective on Christianity.",
+                    "platform": "X",
+                    "date": "2024-05-10"
+                },
+                {
+                    "id": 7,
+                    "title": "Christians: Professional Hypocrites",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1796713795789770910",
+                    "content": "Criticism of Christian hypocrisy.",
+                    "platform": "X",
+                    "date": "2024-05-09"
+                },
+                {
+                    "id": 8,
+                    "title": "Christian Gamer and OnlyFans Subscriber: 'Jesus is King!'",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1806992259952365922",
+                    "content": "Critique on the contradiction in modern Christian practices.",
+                    "platform": "X",
+                    "date": "2024-06-12"
+                },
+                {
+                    "id": 9,
+                    "title": "Rabbi Jesus Went Angry Against Other Rabbis and Whipped Them, One Day",
+                    "author": "High Priest Hooded Cobra",
+                    "link": "https://x.com/LordBaalzebul/status/1801506118394425696",
+                    "content": "Account of Jesus' anger towards other rabbis.",
+                    "platform": "X",
+                    "date": "2024-06-01"
+                },
+                {
+    "id": 10,
+    "title": "Christians Will Exorcise You Via Online Post and Rabbi Jesus GIF: Beware",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1802008816554274948",
+    "content": "Warning about online Christian exorcism practices.",
+    "platform": "X",
+    "date": "2024-06-02"
+  },
+  {
+    "id": 11,
+    "title": "Did 'Primitive Pagans' Transition to Christianity, or they resisted and enforced by the Sword?",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1801691077956558909",
+    "content": "Questioning the conversion of pagans to Christianity.",
+    "platform": "X",
+    "date": "2024-06-01"
+  },
+  {
+    "id": 12,
+    "title": "Who Lies? The Christian or the Bible?",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1798960720333226225",
+    "content": "Questioning the truthfulness between Christians and the Bible.",
+    "platform": "X",
+    "date": "2024-05-14"
+  },
+  {
+    "id": 13,
+    "title": "Islam The Abrahamic Blood Death Cult: What Islam Really Is",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1818129166308433980",
+    "content": "Criticism of Islam as a death cult.",
+    "platform": "X",
+    "date": "2024-08-05"
+  },
+  {
+    "id": 14,
+    "title": "How 'Allah' Invented Islam?",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1801094476187705421",
+    "content": "Questioning the origins of Islam through Allah.",
+    "platform": "X",
+    "date": "2024-05-31"
+  },
+  {
+    "id": 15,
+    "title": "Satan and Adam: Islamic perspective of 'Bowing Down To Adam' & The Yezidi Perspective",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1807031067498438896",
+    "content": "Comparison of Islamic and Yezidi views on Satan and Adam.",
+    "platform": "X",
+    "date": "2024-06-12"
+  },
+                {
+                    id: 16,
+                    title: "Why do Jews put all World Leaders at the Western Wall?",
+                    author: "High Priest Hooded Cobra",
+                    link: "https://x.com/LordBaalzebul/status/1798628881898905804",
+                    content: "Occult knowledge is required to understand why.",
+                    platform: "X",
+                    date: "2024-06-06",
+                },
+                {
+                    id: 17,
+                    title: "\"Anti-Christian\" Pseudo-Satanism: A Jewish Falsehood",
+                    author: "High Priest Hooded Cobra",
+                    link: "https://x.com/LordBaalzebul/status/1800977197189980264",
+                    content: "Anti-Christian freaks, posing as \"Satanic,\" unknowingly follow slander from Judaism.",
+                    platform: "X",
+                    date: "2024-06-12",
+                },
+                {
+    "id": 18,
+    "title": "Why Are There Ethics In Spiritual Satanism?",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1814079027377754566",
+    "content": "Exploration of ethical principles in Spiritual Satanism.",
+    "platform": "X",
+    "date": "2024-07-25"
+  },
+  {
+    "id": 19,
+    "title": "Spiritual Satanism: For The Few, The Brave and Wise.",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1809023105429315897",
+    "content": "Positioning Spiritual Satanism as a path for the elite.",
+    "platform": "X",
+    "date": "2024-06-25"
+  },
+  {
+    "id": 20,
+    "title": "Accepting Lack Of Knowledge: To Not Spread Confusion [Spiritual Satanism]",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1808606246628700464",
+    "content": "Importance of acknowledging ignorance within Spiritual Satanism.",
+    "platform": "X",
+    "date": "2024-06-24"
+  },
+  {
+    "id": 21,
+    "title": "Are 'Demons' in the Bible of Jewish Origin? Is Satan of Jewish Origin?",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1806312501270790150",
+    "content": "Questioning the origin of demons and Satan in biblical texts.",
+    "platform": "X",
+    "date": "2024-06-15"
+  },
+  {
+    "id": 22,
+    "title": "Who Is Baal, Beelzebul or Baal-Zebul? Was he God of the Gentiles, or of the Jews?",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1806147094333530376",
+    "content": "Discussion on the identity and origin of Baal.",
+    "platform": "X",
+    "date": "2024-06-14"
+  },
+  {
+    "id": 23,
+    "title": "JoS Ministries: Our Rituals For The Gods - Ma'at & Dagon",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1805011486194139177",
+    "content": "Details on rituals dedicated to Ma'at and Dagon.",
+    "platform": "X",
+    "date": "2024-06-10"
+  },
+  {
+    "id": 24,
+    "title": "About Envy, Greed, Hate, Anger, Lust, Gluttony - High Priest Hooded Cobra 666",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1803946229044248636",
+    "content": "Satanist perspective on human emotions like envy and greed.",
+    "platform": "X",
+    "date": "2024-06-07"
+  },
+  {
+    "id": 25,
+    "title": "Satanist: A Disciple Of The Truth",
+    "author": "High Priest Hooded Cobra",
+    "link": "https://x.com/LordBaalzebul/status/1803585490525827532",
+    "content": "Defining a Satanist as a seeker of truth.",
+    "platform": "X",
+    "date": "2024-06-06"
+  }
+            ];
 
-    <!-- Cards Container -->
-    <section id="cardsContainer" class="cards-container">
-      <!-- Cards appended by script.js -->
-    </section>
-  </main>
+        /*************************************************
+         * 2) Main items array
+         **************************************************/
+        let items = [];
 
-  <script src="script.js"></script>
+        /*************************************************
+         * 3) Local Storage for Items and Favorites
+         **************************************************/
+        let favoriteIds = [];
+
+        function loadLocalStorage() {
+            const storedItems = localStorage.getItem("repositoryItems");
+            if (storedItems) {
+                try {
+                    items = JSON.parse(storedItems);
+                } catch (err) {
+                    items = [];
+                }
+            } else {
+                items = [];
+            }
+
+            const storedFavs = localStorage.getItem("favoriteIds");
+            if (storedFavs) {
+                try {
+                    favoriteIds = JSON.parse(storedFavs);
+                } catch (err) {
+                    favoriteIds = [];
+                }
+            } else {
+                favoriteIds = [];
+            }
+        }
+
+        function saveLocalStorage() {
+            localStorage.setItem("repositoryItems", JSON.stringify(items));
+            localStorage.setItem("favoriteIds", JSON.stringify(favoriteIds));
+        }
+
+        /*************************************************
+         * 4) DOM Elements
+         **************************************************/
+        const cardsContainer = document.getElementById("cardsContainer");
+        const searchInput = document.getElementById("searchInput");
+        const searchTypeSelect = document.getElementById("searchType");
+        const authorFilter = document.getElementById("authorFilter");
+        const startDateInput = document.getElementById("startDate");
+        const endDateInput = document.getElementById("endDate");
+        const favoriteOnlyCheckbox = document.getElementById("favoriteOnly");
+
+        const loadDefaultsBtn = document.getElementById("loadDefaultsBtn");
+        const addItemBtn = document.getElementById("addItemBtn");
+        const exportBtn = document.getElementById("exportBtn");
+        const importBtn = document.getElementById("importBtn");
+        const deleteAllBtn = document.getElementById("deleteAllBtn");
+        const deleteSelectedBtn = document.getElementById("deleteSelectedBtn");
+
+        // Modals: Add, Edit, Import, Export
+        const modalAddItemBg = document.getElementById("modalAddItemBg");
+        const addItemForm = document.getElementById("addItemForm");
+        const cancelAddItem = document.getElementById("cancelAddItem");
+
+        const modalEditItemBg = document.getElementById("modalEditItemBg");
+        const editItemForm = document.getElementById("editItemForm");
+        const cancelEditItem = document.getElementById("cancelEditItem");
+
+        const modalImportBg = document.getElementById("modalImportBg");
+        const importDataTextarea = document.getElementById("importData");
+        const importModeSelect = document.getElementById("importMode");
+        const importConfirmBtn = document.getElementById("importConfirmBtn");
+        const importCancelBtn = document.getElementById("importCancelBtn");
+
+        const modalExportBg = document.getElementById("modalExportBg");
+        const exportJsonTextarea = document.getElementById("exportJsonTextarea");
+        const exportBase64Textarea = document.getElementById("exportBase64Textarea");
+        const copyJsonBtn = document.getElementById("copyJsonBtn");
+        const copyBase64Btn = document.getElementById("copyBase64Btn");
+        const exportCloseBtn = document.getElementById("exportCloseBtn");
+
+        // For datalists
+        const authorsList = document.getElementById("authorsList");
+        const platformsList = document.getElementById("platformsList");
+
+        // Keep track of "selected" items for bulk-deletion
+        let selectedIds = new Set();
+
+        /*************************************************
+         * 5) Populate Author/Platform Datalists + Filter
+         **************************************************/
+        function populateAuthorDropdown() {
+            // Clear "All" except the first
+            while (authorFilter.options.length > 1) {
+                authorFilter.remove(1);
+            }
+
+            const uniqueAuthors = [...new Set(items.map(i => i.author))];
+            uniqueAuthors.forEach(author => {
+                const option = document.createElement("option");
+                option.value = author;
+                option.textContent = author;
+                authorFilter.appendChild(option);
+            });
+
+            // For Add/Edit forms
+            authorsList.innerHTML = "";
+            uniqueAuthors.forEach(author => {
+                const opt = document.createElement("option");
+                opt.value = author;
+                authorsList.appendChild(opt);
+            });
+
+            const uniquePlatforms = [...new Set(items.map(i => i.platform))];
+            platformsList.innerHTML = "";
+            uniquePlatforms.forEach(plat => {
+                const opt = document.createElement("option");
+                opt.value = plat;
+                platformsList.appendChild(opt);
+            });
+        }
+
+        /*************************************************
+         * 6) Render Cards
+         **************************************************/
+        function renderCards(data) {
+            cardsContainer.innerHTML = "";
+
+            // Determine if we are showing only favorites
+            const showFavs = favoriteOnlyCheckbox.checked;
+
+            data.forEach(item => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+
+                // CARD HEADER
+                const cardHeader = document.createElement("div");
+                cardHeader.classList.add("card-header");
+
+                // If NOT in favorites-only mode, show the selection checkbox
+                if (!showFavs) {
+                    const selectCheckbox = document.createElement("input");
+                    selectCheckbox.type = "checkbox";
+                    selectCheckbox.checked = selectedIds.has(item.id);
+                    selectCheckbox.addEventListener("change", () => {
+                        if (selectCheckbox.checked) {
+                            selectedIds.add(item.id);
+                        } else {
+                            selectedIds.delete(item.id);
+                        }
+                    });
+                    cardHeader.appendChild(selectCheckbox);
+                }
+
+                // Title
+                const titleEl = document.createElement("h2");
+                titleEl.textContent = item.title || "Untitled";
+                cardHeader.appendChild(titleEl);
+
+                // ICONS container
+                const iconsContainer = document.createElement("div");
+                iconsContainer.classList.add("card-icons");
+
+                // If not in favorites-only view, allow reordering/editing/deleting
+                if (!showFavs) {
+                    // Reorder up
+                    const arrowUp = document.createElement("span");
+                    arrowUp.classList.add("icon-btn");
+                    arrowUp.textContent = "▲";
+                    arrowUp.title = "Move Up";
+                    arrowUp.addEventListener("click", () => moveItemUp(item.id));
+                    iconsContainer.appendChild(arrowUp);
+
+                    // Reorder down
+                    const arrowDown = document.createElement("span");
+                    arrowDown.classList.add("icon-btn");
+                    arrowDown.textContent = "▼";
+                    arrowDown.title = "Move Down";
+                    arrowDown.addEventListener("click", () => moveItemDown(item.id));
+                    iconsContainer.appendChild(arrowDown);
+
+                    // Edit
+                    const editIcon = document.createElement("span");
+                    editIcon.classList.add("icon-btn");
+                    editIcon.textContent = "✎";
+                    editIcon.title = "Edit Item";
+                    editIcon.addEventListener("click", () => openEditModal(item.id));
+                    iconsContainer.appendChild(editIcon);
+
+                    // Delete
+                    const deleteIcon = document.createElement("span");
+                    deleteIcon.classList.add("icon-btn");
+                    deleteIcon.textContent = "🗑";
+                    deleteIcon.title = "Delete Item";
+                    deleteIcon.addEventListener("click", () => deleteItem(item.id));
+                    iconsContainer.appendChild(deleteIcon);
+                }
+
+                // Favorite star (always shown)
+                const favIcon = document.createElement("span");
+                favIcon.classList.add("fav-toggle");
+                favIcon.textContent = "★";
+                if (favoriteIds.includes(item.id)) {
+                    favIcon.classList.add("favorited");
+                }
+                favIcon.addEventListener("click", () => toggleFavorite(item.id, favIcon));
+                iconsContainer.appendChild(favIcon);
+
+                cardHeader.appendChild(iconsContainer);
+                card.appendChild(cardHeader);
+
+                // CARD BODY
+                const cardBody = document.createElement("div");
+                cardBody.classList.add("card-body");
+
+                // Author
+                const authorEl = document.createElement("p");
+                authorEl.classList.add("author");
+                authorEl.textContent = `By: ${item.author}`;
+                cardBody.appendChild(authorEl);
+
+                // Content
+                const contentEl = document.createElement("p");
+                contentEl.classList.add("content");
+                contentEl.textContent = item.content;
+                cardBody.appendChild(contentEl);
+
+                // Platform
+                if (item.platform) {
+                    const platformEl = document.createElement("p");
+                    platformEl.classList.add("platform");
+                    platformEl.textContent = `Platform: ${item.platform}`;
+                    cardBody.appendChild(platformEl);
+                }
+
+                // Date
+                if (item.date) {
+                    const dateEl = document.createElement("p");
+                    dateEl.classList.add("date");
+                    dateEl.textContent = `Date: ${item.date}`;
+                    cardBody.appendChild(dateEl);
+                }
+
+                // Link
+                if (item.link) {
+                    const linkEl = document.createElement("p");
+                    linkEl.classList.add("link");
+                    linkEl.innerHTML = `Link: <a href="${item.link}" target="_blank">${item.link}</a>`;
+                    cardBody.appendChild(linkEl);
+                }
+
+                card.appendChild(cardBody);
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        /*************************************************
+         * 7) Move Items (Up/Down)
+         **************************************************/
+        function moveItemUp(itemId) {
+            const index = items.findIndex(i => i.id === itemId);
+            if (index > 0) {
+                [items[index - 1], items[index]] = [items[index], items[index - 1]];
+                saveLocalStorage();
+                filterData();
+            }
+        }
+
+        function moveItemDown(itemId) {
+            const index = items.findIndex(i => i.id === itemId);
+            if (index < items.length - 1) {
+                [items[index + 1], items[index]] = [items[index], items[index + 1]];
+                saveLocalStorage();
+                filterData();
+            }
+        }
+
+        /*************************************************
+         * 8) Toggle Favorite
+         **************************************************/
+        function toggleFavorite(itemId, iconElement) {
+            if (favoriteIds.includes(itemId)) {
+                favoriteIds = favoriteIds.filter(id => id !== itemId);
+                iconElement.classList.remove("favorited");
+            } else {
+                favoriteIds.push(itemId);
+                iconElement.classList.add("favorited");
+            }
+            saveLocalStorage();
+
+            // If "Show Favorites" is checked, refresh display
+            if (favoriteOnlyCheckbox.checked) {
+                filterData();
+            }
+        }
+
+        /*************************************************
+         * 9) Delete Item (Individual)
+         **************************************************/
+        function deleteItem(itemId) {
+            const confirmDel = confirm("Delete this item?");
+            if (!confirmDel) return;
+
+            items = items.filter(i => i.id !== itemId);
+            favoriteIds = favoriteIds.filter(id => id !== itemId);
+            selectedIds.delete(itemId);
+
+            saveLocalStorage();
+            populateAuthorDropdown();
+            filterData();
+        }
+
+        /*************************************************
+         * 10) Edit Item
+         **************************************************/
+        function openEditModal(itemId) {
+            const item = items.find(i => i.id === itemId);
+            if (!item) return;
+
+            // Populate the edit form
+            editItemForm.elements["editItemId"].value = item.id;
+            editItemForm.elements["editTitle"].value = item.title;
+            editItemForm.elements["editAuthor"].value = item.author;
+            editItemForm.elements["editContent"].value = item.content;
+            editItemForm.elements["editPlatform"].value = item.platform;
+            editItemForm.elements["editDate"].value = item.date || "";
+            editItemForm.elements["editLink"].value = item.link || "";
+
+            modalEditItemBg.classList.add("active");
+        }
+
+        editItemForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(editItemForm);
+
+            const id = Number(formData.get("editItemId"));
+            const title = formData.get("editTitle").trim();
+            const author = formData.get("editAuthor").trim();
+            const content = formData.get("editContent").trim();
+            const platform = formData.get("editPlatform").trim();
+            const date = formData.get("editDate")?.trim() || "";
+            const link = formData.get("editLink")?.trim() || "";
+
+            // Find item in the array
+            const idx = items.findIndex(i => i.id === id);
+            if (idx > -1) {
+                items[idx].title = title;
+                items[idx].author = author;
+                items[idx].content = content;
+                items[idx].platform = platform;
+                items[idx].date = date;
+                items[idx].link = link;
+
+                saveLocalStorage();
+                populateAuthorDropdown();
+                filterData();
+            }
+
+            modalEditItemBg.classList.remove("active");
+            editItemForm.reset();
+        });
+
+        cancelEditItem.addEventListener("click", () => {
+            modalEditItemBg.classList.remove("active");
+            editItemForm.reset();
+        });
+
+        /*************************************************
+         * 11) Filter Data
+         **************************************************/
+        function filterData() {
+            const searchText = searchInput.value.toLowerCase().trim();
+            const searchType = searchTypeSelect.value;
+            const selectedAuthor = authorFilter.value;
+            const startD = startDateInput.value ? new Date(startDateInput.value) : null;
+            const endD = endDateInput.value ? new Date(endDateInput.value) : null;
+            const showFavs = favoriteOnlyCheckbox.checked;
+
+            const filtered = items.filter(item => {
+                // Only favorites if "Show Favorites" is checked
+                if (showFavs && !favoriteIds.includes(item.id)) {
+                    return false;
+                }
+                // Author
+                if (selectedAuthor !== "all" && item.author !== selectedAuthor) return false;
+                // Search
+                if (searchText) {
+                    const titleMatch = (item.title || "").toLowerCase().includes(searchText);
+                    const contentMatch = (item.content || "").toLowerCase().includes(searchText);
+                    if (searchType === "title" && !titleMatch) return false;
+                    if (searchType === "content" && !contentMatch) return false;
+                    if (searchType === "both" && !(titleMatch || contentMatch)) return false;
+                }
+                // Date range
+                if (item.date) {
+                    const itemDate = new Date(item.date);
+                    if (startD && itemDate < startD) return false;
+                    if (endD && itemDate > endD) return false;
+                }
+                return true;
+            });
+
+            renderCards(filtered);
+        }
+
+        /*************************************************
+         * 12) Bulk-Delete + Other Buttons
+         **************************************************/
+        loadDefaultsBtn.addEventListener("click", () => {
+            if (items.length === 0) {
+                items = [...DEFAULT_ITEMS];
+                saveLocalStorage();
+                populateAuthorDropdown();
+                filterData();
+            } else {
+                const confirmOverwrite = confirm("Items already exist. Overwrite them with default items?");
+                if (confirmOverwrite) {
+                    items = [...DEFAULT_ITEMS];
+                    favoriteIds = [];
+                    selectedIds.clear();
+                    saveLocalStorage();
+                    populateAuthorDropdown();
+                    filterData();
+                }
+            }
+        });
+
+        addItemBtn.addEventListener("click", () => {
+            modalAddItemBg.classList.add("active");
+        });
+
+        cancelAddItem.addEventListener("click", () => {
+            modalAddItemBg.classList.remove("active");
+            addItemForm.reset();
+        });
+
+        // Add new item
+        addItemForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = new FormData(addItemForm);
+
+            let newId = 1;
+            if (items.length > 0) {
+                newId = Math.max(...items.map(i => i.id)) + 1;
+            }
+
+            items.push({
+                id: newId,
+                title: data.get("title").trim(),
+                author: data.get("author").trim(),
+                content: data.get("content").trim(),
+                platform: data.get("platform").trim(),
+                date: data.get("date").trim(),
+                link: data.get("link")?.trim() || "",
+            });
+
+            saveLocalStorage();
+            populateAuthorDropdown();
+            filterData();
+
+            modalAddItemBg.classList.remove("active");
+            addItemForm.reset();
+        });
+
+        // Export: show export modal
+        exportBtn.addEventListener("click", () => {
+            const rawJson = JSON.stringify(items, null, 2);
+            const base64 = btoa(JSON.stringify(items));
+
+            exportJsonTextarea.value = rawJson;
+            exportBase64Textarea.value = base64;
+            modalExportBg.classList.add("active");
+        });
+
+        // Copy buttons for Export
+        copyJsonBtn.addEventListener("click", () => {
+            navigator.clipboard.writeText(exportJsonTextarea.value)
+                .then(() => alert("Copied JSON to clipboard"));
+        });
+        copyBase64Btn.addEventListener("click", () => {
+            navigator.clipboard.writeText(exportBase64Textarea.value)
+                .then(() => alert("Copied Base64 to clipboard"));
+        });
+        exportCloseBtn.addEventListener("click", () => {
+            modalExportBg.classList.remove("active");
+            exportJsonTextarea.value = "";
+            exportBase64Textarea.value = "";
+        });
+
+        // Import
+        importBtn.addEventListener("click", () => {
+            modalImportBg.classList.add("active");
+        });
+
+        importCancelBtn.addEventListener("click", () => {
+            modalImportBg.classList.remove("active");
+            importDataTextarea.value = "";
+        });
+
+        importConfirmBtn.addEventListener("click", () => {
+            const inputData = importDataTextarea.value.trim();
+            const importMode = importModeSelect.value;
+            if (!inputData) {
+                alert("No data provided.");
+                return;
+            }
+
+            let decoded;
+            // Try direct JSON
+            try {
+                decoded = JSON.parse(inputData);
+            } catch (err) {
+                // else try base64
+                try {
+                    const raw = atob(inputData);
+                    decoded = JSON.parse(raw);
+                } catch (error2) {
+                    alert("Invalid data format (not valid JSON or base64).");
+                    return;
+                }
+            }
+
+            if (!Array.isArray(decoded)) {
+                alert("The imported data is not an array. Aborting...");
+                return;
+            }
+
+            if (importMode === "overwrite") {
+                items = decoded;
+                favoriteIds = [];
+                selectedIds.clear();
+            } else {
+                // "merge"
+                const existingIds = new Set(items.map(i => i.id));
+                decoded.forEach(dItem => {
+                    if (!existingIds.has(dItem.id)) {
+                        items.push(dItem);
+                    }
+                });
+            }
+
+            saveLocalStorage();
+            populateAuthorDropdown();
+            filterData();
+
+            modalImportBg.classList.remove("active");
+            importDataTextarea.value = "";
+        });
+
+        // Delete All
+        deleteAllBtn.addEventListener("click", () => {
+            const confirmDeleteAll = confirm("Are you sure you want to delete ALL items?");
+            if (confirmDeleteAll) {
+                items = [];
+                favoriteIds = [];
+                selectedIds.clear();
+                saveLocalStorage();
+                populateAuthorDropdown();
+                filterData();
+            }
+        });
+
+        // Delete Selected
+        deleteSelectedBtn.addEventListener("click", () => {
+            if (selectedIds.size === 0) {
+                alert("No items selected for deletion.");
+                return;
+            }
+            const confirmDeleteSel = confirm(`Delete ${selectedIds.size} selected item(s)?`);
+            if (confirmDeleteSel) {
+                items = items.filter(i => !selectedIds.has(i.id));
+                favoriteIds = favoriteIds.filter(id => !selectedIds.has(id));
+                selectedIds.clear();
+                saveLocalStorage();
+                populateAuthorDropdown();
+                filterData();
+            }
+        });
+
+        /*************************************************
+         * 13) Add Filter Event Listeners
+         **************************************************/
+        searchInput.addEventListener("input", filterData);
+        searchTypeSelect.addEventListener("change", filterData);
+        authorFilter.addEventListener("change", filterData);
+        startDateInput.addEventListener("change", filterData);
+        endDateInput.addEventListener("change", filterData);
+        favoriteOnlyCheckbox.addEventListener("change", filterData);
+
+        /*************************************************
+         * 14) On Page Load
+         **************************************************/
+        loadLocalStorage();
+        populateAuthorDropdown();
+        filterData();
+    </script>
 </body>
+
 </html>
